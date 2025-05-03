@@ -36,3 +36,13 @@ class NovaBrain:
             response = "I'm not sure how to respond yet, but I'm learning!"
             log_interaction("Nova", response)
             return response
+            if __name__ == "__main__":
+    brain = NovaBrain()
+    while True:
+        user_input = input("You (to NovaBrain): ")
+        if user_input.lower() in ["exit", "quit"]:
+            print("Nova: Goodbye, Roland.")
+            break
+        response = brain.decide_action(user_input)
+        print(f"Nova: {response}")
+
