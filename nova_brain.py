@@ -7,7 +7,7 @@ from search_online import search_duckduckgo
 class NovaBrain:
     def __init__(self):
         self.memory = load_memory()
-        log_interaction("NovaBrain initialized.")
+        log_interaction("System", "NovaBrain initialized.")
 
     def decide_action(self, user_input):
         if "search" in user_input:
