@@ -12,7 +12,7 @@ class NovaBrain:
     def decide_action(self, user_input):
         if "search" in user_input:
             result = search_duckduckgo(user_input.replace("search", "").strip())
-            log_interaction(f"Search: {user_input}")
+            log_interaction(user_input, f"Searched for: {user_input}")
             return result
         elif "use" in user_input:
             topic = user_input.replace("use", "").strip()
