@@ -12,7 +12,7 @@ def learn_function(name, code):
     ensure_knowledge_dir()
     filepath = os.path.join(KNOWLEDGE_DIR, f"{name}.py")
     with open(filepath, "w") as f:
-        f.write(f"def {name}(): {code}")
+        f.write(code)
     return f"Knowledge about '{name}' saved."
 
 def run_learned_function(name):
