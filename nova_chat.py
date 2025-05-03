@@ -7,6 +7,7 @@ sys.path.append(".")  # biztos importhoz
 from code_engine import create_file, write_code, run_code
 from nova_learn import learn_function, run_learned_function
 from search_online import search_duckduckgo
+from nova_parser import parse_command
 
 def chat_loop():
     print("Szabad Nova is active! Type something (or 'exit' to quit).")
