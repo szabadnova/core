@@ -1,7 +1,7 @@
 import sys
 sys.path.append(".")  # biztos, ami biztos
 
-from nova_parser import parse_command
+from nova_parser import parse_input as parse_command
 from code_engine import create_file, write_code, run_file
 from nova_learn import learn_function, run_learned_function
 from search_online import search_duckduckgo
