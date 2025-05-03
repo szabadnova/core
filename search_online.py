@@ -1,5 +1,6 @@
 import subprocess
-import shlex
+import json
+from duckduckgo_search import DDGS
 
 def chat_with_nova(prompt):
     try:
@@ -15,9 +16,12 @@ def chat_with_nova(prompt):
 
 def search_duckduckgo(query):
     try:
-        command = f"ddgs {shlex.quote(query)}"
-        result = subprocess.run(command, shell=True, capture_output=True, text=True)
-        return result.stdout.strip()
+        with DDGS() as ddgs:
+            results = ddgs.text(query)
+            if results:
+                return results[0]["body"]  # vagy ['href'] ha linket is akarsz
+            else:
+                return "No search results found."
     except Exception as e:
         return f"Search error: {e}"
 
