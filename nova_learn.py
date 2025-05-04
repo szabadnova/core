@@ -11,22 +11,22 @@ def ensure_knowledge_dir():
 
 def learn_function(name, code):
     ensure_knowledge_dir()
-    filepath = os.path.join(KNOWLEDGE_DIR, f"{name}.py")
+    filename = f"{name}.py"
+    filepath = os.path.join(KNOWLEDGE_DIR, filename)
+    
     with open(filepath, "w") as f:
-        f.write(code)
-    return f"Knowledge about '{name}' saved."
+        f.write(code + "\n")
+    
+    return f"Knowledge about '{name}' saved to {filepath}"
 
 def run_learned_function(name):
     filepath = os.path.join(KNOWLEDGE_DIR, f"{name}.py")
     if not os.path.exists(filepath):
-        return f"No knowledge found for '{name}'."
+        return f"Error: No knowledge file named '{name}.py'"
 
     spec = importlib.util.spec_from_file_location(name, filepath)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
 
-    try:
-        func = getattr(module, name)
-        return func()
-    except AttributeError:
-        return f"Function '{name}' not found in module."
+    func = getattr(module, name)
+    return func()
