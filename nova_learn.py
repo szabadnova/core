@@ -22,11 +22,10 @@ def learn_function(name, code):
 def run_learned_function(name):
     filepath = os.path.join(KNOWLEDGE_DIR, f"{name}.py")
     if not os.path.exists(filepath):
-        return f"Error: No knowledge file named '{name}.py'"
+        return f"No knowledge found for '{name}'."
 
-    spec = importlib.util.spec_from_file_location(name, filepath)
+    spec = importlib.util.spec_from_file_location(name, os.path.abspath(filepath))
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-
     func = getattr(module, name)
     return func()
